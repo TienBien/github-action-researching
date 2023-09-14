@@ -19,6 +19,7 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
+    if: ${{ github.event.inputs.DATA_SOURCE_TYPE }} == 'snowflake'
     runs-on: ubuntu-latest
     steps:
       - run: echo "Test ${{ github.event.inputs.DATA_SOURCE_TYPE }} datasource."
