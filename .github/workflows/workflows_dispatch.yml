@@ -1,0 +1,24 @@
+# (C) 2023 Tien Bien
+
+name: Workflow dispatch example
+
+on:
+  workflow_dispatch:
+    inputs:
+      BUILD_ALL:
+        description: 'BUILD_ALL'
+        required: true
+        type: boolean
+      DATA_SOURCE_TYPE:
+        description: 'DATA_SOURCE_TYPE'
+        required: true
+        default: 'snowflake'
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Test ${{ github.event.inputs.DATA_SOURCE_TYPE }} datasource."
