@@ -21,4 +21,5 @@ jobs:
     if: ${{ github.event.inputs.DATA_SOURCE_TYPE }} == 'snowflake'
     runs-on: ubuntu-latest
     steps:
+      if: ${{ github.event.inputs.DATA_SOURCE_TYPE }} == 'snowflake'
       - run: echo "Test ${{ github.event.inputs.DATA_SOURCE_TYPE }} datasource."
