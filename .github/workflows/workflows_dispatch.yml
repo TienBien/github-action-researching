@@ -34,6 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        run:
+        run: |
           echo "Test ${{ inputs.BUILD_ALL }}."
           cat ./env_variables.json
