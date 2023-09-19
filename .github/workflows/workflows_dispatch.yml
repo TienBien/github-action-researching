@@ -9,7 +9,7 @@ on:
         description: 'BUILD_ALL'
         required: true
         type: boolean
-        default: false
+        default: 'false'
 
   pull_request:
     branches: [ "main" ]
@@ -17,7 +17,7 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
-    if: ${{ github.event.inputs.BUILD_ALL }} == true
+    if: ${{ github.event.inputs.BUILD_ALL }} == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Test
