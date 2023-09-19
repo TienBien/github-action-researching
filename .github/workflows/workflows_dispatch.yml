@@ -48,4 +48,4 @@ jobs:
           chmod +x env_variables.json
           ls -a
           echo "Test ${{ inputs.BUILD_ALL }}."
-          cat ~/env_variables.json
+          cat env_variables.json
