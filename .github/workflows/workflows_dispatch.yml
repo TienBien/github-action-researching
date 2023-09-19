@@ -46,4 +46,4 @@ jobs:
       - name: Test
         run: |
           echo "Test ${{ inputs.BUILD_ALL }}."
-          cat ./env_variables.json
+          cat env_variables.json
