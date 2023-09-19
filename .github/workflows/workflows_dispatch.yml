@@ -9,15 +9,7 @@ on:
         description: 'BUILD_ALL'
         required: true
         type: boolean
-        default: true
-      DATA_SOURCE_TYPE:
-        description: 'DATA_SOURCE_TYPE'
-        required: true
-        default: 'redshift'
-      DATA_SOURCE_TYPE_2:
-        description: 'DATA_SOURCE_TYPE'
-        required: true
-        default: 'abcd'
+        default: false
 
   pull_request:
     branches: [ "main" ]
@@ -25,12 +17,9 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
-    if: ${{ github.event.inputs.DATA_SOURCE_TYPE }} == 'snowflake'
+    if: ${{ github.event.inputs.BUILD_ALL }} == true
     runs-on: ubuntu-latest
     steps:
       - name: Test
-        if: ${{ github.event.inputs.DATA_SOURCE_TYPE }} == 'snowflake'
         run: |
           echo "Test ${{ github.event.inputs.BUILD_ALL }}."
-          echo "Test ${{ github.event.inputs.DATA_SOURCE_TYPE }} datasource."
-          echo "Test ${{ github.event.inputs.DATA_SOURCE_TYPE_2 }} datasource."
