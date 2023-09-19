@@ -7,8 +7,8 @@ on:
     inputs:
       BUILD_ALL:
         description: 'BUILD_ALL'
-        required: true
-        type: boolean
+        required: false
+        type: string
         default: 'false'
 
   pull_request:
