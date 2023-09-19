@@ -9,17 +9,36 @@ on:
         description: 'BUILD_ALL'
         required: true
         type: boolean
-        default: 'false'
-
+        default: true
+      LIST_PARAMETERS:
+        description: 'LIST_PARAMETERS:'
+        required: false
+        type: string
+        default: '{"DATA_SOURCE_TYPE":"redshift","DASHBOARD_NAME":"Company insight","NUMBER_ORG":"1","EXPORTED_FILE_FORMAT":"CSV,XLSX""ENABLE_TABULAR_EXPORT":true,"LIST_ATTRIBUTE_FILTER":"out_tpch_tab__lineitem.l_pk"}'
   pull_request:
     branches: [ "main" ]
   push:
     branches: [ "main" ]
 jobs:
+  read-params:
+    runs-on:
+      group: tiger-perf-runners
+      labels: tiger-perf-medium-ubuntu-dind
+    outputs:
+      params: $ {{ steps.set-params.ouputs.params }}
+    steps:
+      - id: set-params
+        run: |
+          echo "params= ${{ inputs.LIST_PARAMETERS }}" >> ./env_variables.json
   deploy:
-    if: ${{ github.event.inputs.BUILD_ALL }} == 'true'
+    needs: [read-params]
+    if: ${{ inputs.BUILD_ALL == 'true' }}
     runs-on: ubuntu-latest
+    env:
+      DATA_SOURCE_TYPE: ${{ fromJSON(inputs.LIST_PARAMETERS.DATA_SOURCE_TYPE) }}
     steps:
       - name: Test
         run: |
           echo "Test ${{ github.event.inputs.BUILD_ALL }}."
+          cat ./env_variables.json
+
