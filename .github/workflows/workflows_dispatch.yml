@@ -45,5 +45,6 @@ jobs:
           path: ./env_variables.json
       - name: Test
         run: |
+          ls -a
           echo "Test ${{ inputs.BUILD_ALL }}."
-          cat env_variables.json
+          cat ~/env_variables.json
