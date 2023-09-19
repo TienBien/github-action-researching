@@ -21,9 +21,7 @@ on:
     branches: [ "main" ]
 jobs:
   read-params:
-    runs-on:
-      group: tiger-perf-runners
-      labels: tiger-perf-medium-ubuntu-dind
+    runs-on: ubuntu-latest
     outputs:
       params: $ {{ steps.set-params.ouputs.params }}
     steps:
