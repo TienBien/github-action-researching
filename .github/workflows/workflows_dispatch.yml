@@ -17,9 +17,9 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
-    if: ${{ inputs.BUILD_ALL }} == 'true'
+    if: ${{ inputs.BUILD_ALL == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Test
         run: |
-          echo "Test ${{ github.event.inputs.BUILD_ALL }}."
+          echo "Test ${{ inputs.BUILD_ALL }}."
