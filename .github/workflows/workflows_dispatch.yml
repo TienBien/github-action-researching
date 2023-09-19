@@ -8,8 +8,8 @@ on:
       BUILD_ALL:
         description: 'BUILD_ALL'
         required: false
-        type: string
-        default: 'false'
+        type: boolean
+        default: false
 
   pull_request:
     branches: [ "main" ]
@@ -17,7 +17,7 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
-    if: ${{ inputs.BUILD_ALL == 'true' }}
+    if: ${{ inputs.BUILD_ALL == true }}
     runs-on: ubuntu-latest
     steps:
       - name: Test
