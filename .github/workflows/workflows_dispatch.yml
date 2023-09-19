@@ -32,10 +32,8 @@ jobs:
     needs: [read-params]
     if: ${{ inputs.BUILD_ALL == true }}
     runs-on: ubuntu-latest
-    env:
-      DATA_SOURCE_TYPE: ${{ fromJSON(inputs.LIST_PARAMETERS.DATA_SOURCE_TYPE) }}
     steps:
       - name: Test
-        run: |
+        run:
           echo "Test ${{ inputs.BUILD_ALL }}."
           cat ./env_variables.json
