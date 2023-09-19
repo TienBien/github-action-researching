@@ -7,7 +7,7 @@ on:
     inputs:
       BUILD_ALL:
         description: 'BUILD_ALL'
-        required: true
+        required: false
         type: boolean
         default: true
       LIST_PARAMETERS:
@@ -32,13 +32,12 @@ jobs:
           echo "params= ${{ inputs.LIST_PARAMETERS }}" >> ./env_variables.json
   deploy:
     needs: [read-params]
-    if: ${{ inputs.BUILD_ALL == 'true' }}
+    if: ${{ inputs.BUILD_ALL == true }}
     runs-on: ubuntu-latest
     env:
       DATA_SOURCE_TYPE: ${{ fromJSON(inputs.LIST_PARAMETERS.DATA_SOURCE_TYPE) }}
     steps:
       - name: Test
         run: |
-          echo "Test ${{ github.event.inputs.BUILD_ALL }}."
+          echo "Test ${{ inputs.BUILD_ALL }}."
           cat ./env_variables.json
-
