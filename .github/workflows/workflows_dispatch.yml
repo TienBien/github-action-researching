@@ -21,7 +21,7 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
-    if: ${{ inputs.BUILD_ALL == true }}
+    if: inputs.BUILD_ALL == true && github.ref_name == main
     runs-on: ubuntu-latest
     steps:
       - name: Test
