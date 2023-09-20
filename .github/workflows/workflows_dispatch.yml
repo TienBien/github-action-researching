@@ -16,9 +16,9 @@ on:
         type: string
         default: 'DATA_SOURCE_TYPE="redshift" DASHBOARD_NAME="Company insight" NUMBER_ORG=1 EXPORTED_FILE_FORMAT="CSV,XLSX" ENABLE_TABULAR_EXPORT=true LIST_ATTRIBUTE_FILTER="out_tpch_tab__lineitem.l_pk"'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "demo" ]
   push:
-    branches: [ "main" ]
+    branches: [ "demo" ]
 jobs:
   deploy:
     if: inputs.BUILD_ALL == true && github.ref_name == 'main'
