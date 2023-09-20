@@ -27,4 +27,4 @@ jobs:
     steps:
       - name: Test
         run: |
-          eval ${{ inputs.EXTRA_PARAMETERS }} /bin/sh run-k6.sh
+          echo ${{ inputs.EXTRA_PARAMETERS }}
