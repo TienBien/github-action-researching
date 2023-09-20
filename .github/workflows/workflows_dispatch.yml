@@ -21,7 +21,6 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
-    needs: [read-params]
     if: ${{ inputs.BUILD_ALL == true }}
     runs-on: ubuntu-latest
     steps:
