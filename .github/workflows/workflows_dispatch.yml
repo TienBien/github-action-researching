@@ -20,19 +20,6 @@ on:
   push:
     branches: [ "main" ]
 jobs:
-  read-params:
-    runs-on: ubuntu-latest
-    outputs:
-      params: $ {{ steps.set-params.ouputs.params }}
-    steps:
-      - id: set-params
-        run: |
-          echo "params= ${{ inputs.LIST_PARAMETERS }}" >> ./env_variables.json
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: set-vars
-          path: ./env_variables.json
   deploy:
     needs: [read-params]
     if: ${{ inputs.BUILD_ALL == true }}
