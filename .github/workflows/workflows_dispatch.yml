@@ -42,7 +42,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: set-vars
-          path: ./env_variables.json
+          path: .
       - name: Test
         run: |
           chmod g+w env_variables.json
